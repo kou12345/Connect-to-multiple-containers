@@ -21,3 +21,16 @@ services:
       - .:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     # ...
+
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    volumes:
+      - postgres-data-test:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  postgres-data-test:
